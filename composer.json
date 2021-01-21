@@ -1,0 +1,50 @@
+{
+    "name": "miladimos/laravel-crud-creator",
+    "description": "a powerful and simple to use package for crud-creator pattern",
+    "homepage": "https://github.com/miladimos/laravel-crud-creator",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "laravel-package",
+        "laravel-crud-creator",
+        "laravel support",
+        "lumen packages",
+        "laravel packages",
+        "lumen support",
+        "slug"
+    ],
+    "authors": [
+        {
+            "name": "miladimos",
+            "email": "message.tome1331@gmail.com",
+            "role": "maintaner",
+            "homepage": "https://github.com/miladimos"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Miladimos\\CrudCreator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Miladimos\\CrudCreator\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+              "Miladimos\\CrudCreator\\Providers\\CrudCreatorServiceProvider"
+            ],
+            "aliases": {
+                "CrudCreator": "Miladimos\\CrudCreator\\Facades\\CrudCreatorFacade"
+            }
+        }
+    },
+    "require": {},
+    "license": "MIT",
+    "require-dev": {
+        "phpunit/phpunit": "^9.3",
+        "orchestra/testbench": "^v5.5.0"
+    }
+}
