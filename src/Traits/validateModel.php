@@ -6,8 +6,14 @@ use InvalidArgumentException;
 trait validateModel
 {
 
-    protected function ensureRepositoryDoesntAlreadytExist($model) {
-        if (class_exists($classFullyQualified = $this->getRepositoryNamespace($model), false)) {
+    protected function ensureControllerDoesntAlreadytExist($model) {
+        if (class_exists($classFullyQualified = $this->getControllerNamespace($model), false)) {
+          throw new InvalidArgumentException("{$classFullyQualified} already exists.");
+        }
+    }
+
+    protected function ensureApiControllerDoesntAlreadytExist($model) {
+        if (class_exists($classFullyQualified = $this->getApiControllerDefaultNamespace($model), false)) {
           throw new InvalidArgumentException("{$classFullyQualified} already exists.");
         }
     }

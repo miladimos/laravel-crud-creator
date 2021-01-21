@@ -9,8 +9,6 @@ use Miladimos\CrudCreator\CrudCreator;
 
 class CrudCreatorServiceProvider extends ServiceProvider
 {
-
-    public static $packagePath = null;
     /**
      * Register services.
      *
@@ -18,7 +16,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . "/../../config/crud_creator.php", 'crud_creator');
+        $this->mergeConfigFrom(__DIR__ . "/../../config/crud-creator.php", 'crud-creator');
 
         $this->registerFacades();
     }
@@ -30,20 +28,17 @@ class CrudCreatorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        self::$packagePath = dirname(__DIR__);
-
         if ($this->app->runningInConsole()) {
 
             $this->registerPublishes();
 
             $this->registerCommands();
-
         }
     }
 
     private function registerFacades()
     {
-        $this->app->bind('crud_creator', function ($app) {
+        $this->app->bind('crud-creator', function ($app) {
             return new CrudCreator();
         });
     }
@@ -51,12 +46,12 @@ class CrudCreatorServiceProvider extends ServiceProvider
     private function registerPublishes()
     {
         $this->publishes([
-            __DIR__ . '/../../config/crud_creator.php' => config_path('crud_creator.php')
-        ], 'crud_creator-config');
+            __DIR__ . '/../../config/crud-creator.php' => config_path('crud-creator.php')
+        ], 'crud-creator-config');
 
         $this->publishes([
-            __DIR__.'/../Console/Stubs' => resource_path('vendor/miladimos/crud_creator/stubs'),
-        ], 'crud_creator-stubs');
+            __DIR__ . '/../Console/Stubs' => resource_path('vendor/miladimos/crud-creator/stubs'),
+        ], 'crud-creator-stubs');
     }
 
     public function registerCommands()
@@ -67,7 +62,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
         ]);
     }
 
-        /**
+    /**
      * Check if package is running under Lumen app
      *
      * @return bool
