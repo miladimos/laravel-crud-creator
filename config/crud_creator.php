@@ -3,50 +3,27 @@
 return [
 
 
-    /*
-        *  Path that contains Models
-        * */
-    'models_namespace' =>'App',
+    'api'=> [
+        'api_namespace' => 'Api',
 
-    /*
-        *  Path that contains Models
-        * */
-    'models_namespace' =>'Models',
+        'api_version' => 'v1',
+    ],
 
-    /*
-        *  Path that contains Repositories
-        *
-        * application_namespace + repositories_namespace
-        * */
-    'repositories_namespace' => 'Repositories',
+    'web'=>[
+        'web_namespace' => 'Site',
+    ],
 
-    /*
-        * Suffix for Created Repositories
-        *
-        * ex: $modelNameRepository
-        *
-        * */
-    'repositories_suffix' => 'Repository',
+    'models_namespace' => 'Models',
 
-    /**
-     * The base path in which the repository interfaces are stored.
-     */
-    'repository_interface_base_path' => 'Repositories/Interfaces',
+    'resource_namespace' => 'Resource',
 
-    /**
-     * The base namespace, relative to application base namespace, for your repositories' interfaces.
-     */
-    'repository_interface_base_namespace' => 'Repositories\Interfaces',
+    'resource_suffix' => 'Resource',
 
-    'per_page' => 50,
-    'max_per_page' => 100,
+    'request_namespace' => 'Request',
 
-    /*
-     |--------------------------------------------------------------------------
-     | Caching Status
-     |--------------------------------------------------------------------------
-     */
+    'request_suffix' => 'Request',
 
-    'cache_enabled' => true,
-
+    'pagination' => [
+        'per_page' => 8,
+    ],
 ];

@@ -5,49 +5,34 @@ namespace Miladimos\CrudCreator\Traits;
 
 trait getStubs
 {
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected static function getRepositoryStub()
+
+    protected static function getApiControllerStub()
     {
-        return file_get_contents(resource_path("vendor/miladimos/repository/stubs/repository.stub"));
+        return file_get_contents(resource_path("vendor/miladimos/crud-creator/stubs/apiController.stub"));
     }
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected static function getRepositoryServiceProviderStub()
+    protected static function getWebControllerStub()
     {
-        return file_get_contents(resource_path("vendor/miladimos/repository/stubs/RepositoryServiceProvider.stub"));
+        return file_get_contents(resource_path("vendor/miladimos/crud-creator/stubs/webController.stub"));
     }
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected static function getRepositoryInterfaceStub()
+    protected static function getResourceStub()
     {
-        return file_get_contents(resource_path("vendor/miladimos/repository/stubs/RepositoryInterface.stub"));
+        return file_get_contents(resource_path("vendor/miladimos/crud-creator/stubs/resource.stub"));
+    }
+
+    protected static function getRequestStub()
+    {
+        return file_get_contents(resource_path("vendor/miladimos/crud-creator/stubs/request.stub"));
     }
 
     protected static function getStub($type)
     {
-        return file_get_contents(resource_path("vendor/miladimos/repository/stubs/$type.stub"));
+        return file_get_contents(resource_path("vendor/miladimos/crud-creator/stubs/$type.stub"));
     }
 
-
-     /**
-   * Get path to the stubs.
-   *
-   * @return string
-   */
-  public function stubPath() {
-    return __DIR__ . '/stubs';
-  }
-
+    public function stubPath()
+    {
+        return __DIR__ . '/stubs';
+    }
 }

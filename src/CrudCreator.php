@@ -12,16 +12,6 @@ class CrudCreator
 {
     use getStubs, helpersMethods, validateModel;
 
-
-    protected static function createProvider()
-    {
-        $template =  self::getCrudCreatorServiceProviderStub();
-
-        if (!file_exists($path=base_path('/App/Providers/CrudCreatorServiceProvider.php')))
-            file_put_contents(base_path('/App/Providers/CrudCreatorServiceProvider.php'), $template);
-    }
-
-
     protected static function createCrudCreator($name)
     {
         $modelNamespace = self::getModelNamespace($name);
@@ -33,20 +23,10 @@ class CrudCreator
         );
 
 
+        if (!file_exists($path=base_path('/App/Providers/CrudCreatorServiceProvider.php')))
+            file_put_contents(base_path('/App/Providers/CrudCreatorServiceProvider.php'), $template);
+
         file_put_contents(base_path("/App/Repositories/{$name}CrudCreator.php"), $template);
-    }
-
-    protected static function createInterface($name)
-    {
-        $interfaceNamespace = self::getInterfaceNamespace($name);
-        $template = str_replace(
-            ['{{ $interfaceNamespace }}'],
-            [$$interfaceNamespace],
-            self::getCrudCreatorInterfaceStub()
-        );
-
-        file_put_contents(base_path("/Repositories/{$name}EloquentCrudCreatorInterface.php"), $template);
-
     }
 
     public static function make($modelName)
