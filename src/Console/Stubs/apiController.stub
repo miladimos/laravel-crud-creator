@@ -1,16 +1,90 @@
 <?php
-namespace App\Repositories;
 
-use Miladimos\Repository\Repositories\BaseRepository;
-use {{ $modelNamespace }}
-use {{ $interfaceNamespace }}
+namespace App\Http\Controllers\Api\v1\Webmaster\{{ $modelName }};
 
-class {{$modelName}}Repository extends BaseRepository implements {{$modelName}}EloquentRepositoryInterface
+use App\Http\Controllers\Api\v1\ApiBaseController;
+use App\Http\Requests\Api\v1\Webmaster\{{ $modelName }}\{{ $modelName }}Request;
+use App\Http\Resources\v1\Webmaster\{{ $modelName }}\{{ $modelName }}Collection;
+use App\Http\Resources\v1\Webmaster\{{ $modelName }}\{{ $modelName }}Resource;
+use App\Models\{{ $modelName }};
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class {{ $modelName }}ApiController extends ApiBaseController
 {
 
-    public function model()
+
+    // private $tagRepository = null;
+
+    // public function __construct({{ $modelName }}RepositoryInterface $tagRepository)
+    // {
+    //     $this->tagRepository = $tagRepository;
+    // }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function index()
     {
-        return {{$modelName}}::class;
+        $tags = new {{ $modelName }}Collection({{ $modelName }}::all());
+        return $this->responseSuccess($tags);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param {{ $modelName }}Request $request
+     * @return JsonResponse
+     */
+    public function store({{ $modelName }}Request $request)
+    {
+        $validatedData = $request->validated();
+        $tag = {{ $modelName }}::create($validatedData);
+        return $this->responseSuccess(new {{ $modelName }}Resource($tag));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $tag
+     * @return JsonResponse
+     */
+    public function show({{ $modelName }} $tag)
+    {
+
+        // $tag = new {{ $modelName }}Resource({{ $modelName }}::find($tag));
+        return $this->responseSuccess(new {{ $modelName }}Resource($tag));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param  int  $tag
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{ $modelName }}Request $request, {{ $modelName }} $tag)
+    {
+        $validatedData = $request->validated();
+        $tag = {{ $modelName }}::findOrFail($tag)->update($validatedData);
+        return $this->responseSuccess(new {{ $modelName }}Resource($tag));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $tag
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy({{ $modelName }} $tag)
+    {
+        $data = [
+            'data'         => new {{ $modelName }}Resource({{ $modelName }}::find($tag)->delete()),
+            'status'       => 'Ok',
+            'status_code'  => '200'
+        ];
+        return response()->json($data);
+    }
 }
