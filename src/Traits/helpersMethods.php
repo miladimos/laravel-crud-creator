@@ -1,6 +1,6 @@
 <?php
 
-namespace Miladimos\Repository\Traits;
+namespace Miladimos\CrudCreator\Traits;
 
 use Illuminate\Support\Str;
 

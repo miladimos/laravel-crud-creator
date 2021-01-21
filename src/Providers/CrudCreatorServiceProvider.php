@@ -18,7 +18,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . "/../../config/repository.php", 'repository');
+        $this->mergeConfigFrom(__DIR__ . "/../../config/crud_creator.php", 'crud_creator');
 
         $this->registerFacades();
     }
@@ -43,7 +43,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
 
     private function registerFacades()
     {
-        $this->app->bind('repository', function ($app) {
+        $this->app->bind('crud_creator', function ($app) {
             return new CrudCreator();
         });
     }
@@ -51,12 +51,12 @@ class CrudCreatorServiceProvider extends ServiceProvider
     private function registerPublishes()
     {
         $this->publishes([
-            __DIR__ . '/../../config/repository.php' => config_path('repository.php')
-        ], 'repository-config');
+            __DIR__ . '/../../config/crud_creator.php' => config_path('crud_creator.php')
+        ], 'crud_creator-config');
 
         $this->publishes([
-            __DIR__.'/../Console/Stubs' => resource_path('vendor/miladimos/repository/stubs'),
-        ], 'repository-stubs');
+            __DIR__.'/../Console/Stubs' => resource_path('vendor/miladimos/crud_creator/stubs'),
+        ], 'crud_creator-stubs');
     }
 
     public function registerCommands()

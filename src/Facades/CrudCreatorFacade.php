@@ -8,6 +8,6 @@ class CrudCreatorFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'repository';
+        return 'crud_creator';
     }
 }

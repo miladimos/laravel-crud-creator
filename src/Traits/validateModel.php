@@ -1,4 +1,4 @@
-<?php namespace Miladimos\Repository\Traits;
+<?php namespace Miladimos\CrudCreator\Traits;
 
 use InvalidArgumentException;
 

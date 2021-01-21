@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\File;
 class InstallPackageCommand extends Command
 {
 
-    protected $signature = "repository:install";
+    protected $signature = "crud_creator:install";
 
-    protected $name = 'Install Repository Package';
+    protected $name = 'Install crud_creator Package';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Simply Install laravel-repository Package';
+    protected $description = 'Simply Install laravel-crud-creator Package';
 
 
     public function handle()
@@ -26,7 +26,7 @@ class InstallPackageCommand extends Command
         $this->warn("Repository Package installing started...");
 
         //config
-        if (File::exists(config_path('repository.php'))) {
+        if (File::exists(config_path('crud_creator.php'))) {
             $confirmConfig = $this->confirm("repository.php already exist. you must overwrite it! Are you ok?");
             if ($confirmConfig) {
                 $this->publishConfig();
