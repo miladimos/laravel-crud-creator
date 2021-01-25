@@ -4,7 +4,7 @@ namespace Miladimos\CrudCreator\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Miladimos\CrudCreator\Console\Commands\InstallPackageCommand;
-use Miladimos\CrudCreator\Console\Commands\MakeCrudCreatorCommand;
+use Miladimos\CrudCreator\Console\Commands\MakeCRUDCommand;
 use Miladimos\CrudCreator\CrudCreator;
 
 class CrudCreatorServiceProvider extends ServiceProvider
@@ -58,7 +58,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
     {
         $this->commands([
             InstallPackageCommand::class,
-            MakeCrudCreatorCommand::class,
+            MakeCRUDCommand::class,
         ]);
     }
 

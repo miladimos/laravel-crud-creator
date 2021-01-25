@@ -1,6 +1,6 @@
 <?php
 
-namespace Miladimos\Repository\Console\Commands;
+namespace Miladimos\CrudCreator\Console\Commands;
 
 
 use Illuminate\Console\Command;

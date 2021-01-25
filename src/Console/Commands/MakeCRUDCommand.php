@@ -20,20 +20,22 @@ class MakeCRUDCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Make New CrudCreator';
+    protected $description = 'Create a new CRUD controller class';
 
 
     public function handle()
     {
         $modelName = trim(Str::studly($this->argument('model')));
 
-        $this->warn("CrudCreator {$modelName} is creating ...");
+        $this->warn("CRUD Controller for Model: {$modelName} is creating ...");
+
+        die;
 
         try {
             if(CrudCreator::make($modelName))
-                $this->info("CrudCreator Model: {$modelName} is created successfully.");
+                $this->info("CRUD Controller for Model: {$modelName} is created successfully.");
             else
-                $this->error('Error in Creating CrudCreator!');
+                $this->error('Error in Creating CRUD Controller for!');
                 die;
         }catch (\Exception $exception) {
             $this->error($exception);
