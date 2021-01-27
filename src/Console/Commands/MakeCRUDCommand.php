@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Miladimos\CrudCreator\CrudCreator;
+use Symfony\Component\Finder\SplFileInfo;
 
 class MakeCRUDCommand extends Command
 {
@@ -20,13 +21,7 @@ class MakeCRUDCommand extends Command
 
     protected $name = 'CrudCreator';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Create a new CRUD controller class';
-
 
     public function handle()
     {
@@ -50,8 +45,6 @@ class MakeCRUDCommand extends Command
 
         return 0;
     }
-
-
 
     public function createRequest()
     {

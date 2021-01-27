@@ -11,14 +11,13 @@ class CrudCreator
 {
     use getStubs, helpersMethods, validateModel;
 
-    protected static function createCrudCreator($name)
+    protected static function createApiCrud($name)
     {
-        $modelNamespace = self::getModelNamespace($name);
-        $interfaceNamespace = self::getInterfaceNamespace($name);
+        $modelNamespace = (new static)->getApiControllerDefaultNamespace($name);
         $template = str_replace(
             ['{{$modelName}}', '{{ $modelNamespace }}'],
             [$name, $modelNamespace],
-            self::getCrudCreatorStub()
+            (new static)->getApiControllerStub($name)
         );
 
 
@@ -31,7 +30,7 @@ class CrudCreator
     public static function make($modelName)
     {
 
-        if (!file_exists($path=(new self)->getCrudCreatorDefaultNamespace()))
+        if (!file_exists($path=(new static)->getCrudCreatorDefaultNamespace()))
             mkdir($path, 0777, true);
 
         // self::createProvider();

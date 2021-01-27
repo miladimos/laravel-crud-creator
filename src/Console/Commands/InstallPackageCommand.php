@@ -13,13 +13,7 @@ class InstallPackageCommand extends Command
 
     protected $name = 'Install crud_creator Package';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Simply Install laravel-crud-creator Package';
-
 
     public function handle()
     {
@@ -51,7 +45,6 @@ class InstallPackageCommand extends Command
 
         return 0;
     }
-
 
     private function publishConfig()
     {
