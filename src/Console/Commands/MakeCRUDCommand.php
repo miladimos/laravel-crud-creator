@@ -11,7 +11,9 @@ class MakeCRUDCommand extends Command
 {
 
     protected $signature = "make:crud
-                           { model : Model Name }";
+                           { model : Model Name }
+                           {--r|resource : Create a new Resource file for Api Controllers}
+                           ";
 
     protected $name = 'CrudCreator';
 
@@ -30,19 +32,17 @@ class MakeCRUDCommand extends Command
         $this->warn("CRUD Controller for Model: {$modelName} is creating ...");
 
         die;
-
         try {
-            if(CrudCreator::make($modelName))
+            if (CrudCreator::make($modelName))
                 $this->info("CRUD Controller for Model: {$modelName} is created successfully.");
             else
                 $this->error('Error in Creating CRUD Controller for!');
-                die;
-        }catch (\Exception $exception) {
+            die;
+        } catch (\Exception $exception) {
             $this->error($exception);
             die;
         }
 
         return 0;
     }
-
 }
