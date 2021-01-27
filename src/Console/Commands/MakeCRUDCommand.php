@@ -12,6 +12,8 @@ class MakeCRUDCommand extends Command
 
     protected $signature = "make:crud
                            { model : Model Name }
+                           {--a|api : Create a new CRUD Api Controller}
+                           {--w|web : Create a new CRUD Web Controller}
                            {--r|resource : Create a new Resource file for Api Controllers}
                            ";
 
