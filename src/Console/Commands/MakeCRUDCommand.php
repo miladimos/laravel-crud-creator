@@ -46,37 +46,4 @@ class MakeCRUDCommand extends Command
         return 0;
     }
 
-    public function createRequest()
-    {
-        if (!is_dir($directory = app_path('Http/Controllers/Request'))) {
-            mkdir($directory, 0755, true);
-        }
-
-        $filesystem = new Filesystem;
-
-        collect($filesystem->allFiles(__DIR__ . '/../stubs/Auth'))
-            ->each(function (SplFileInfo $file) use ($filesystem) {
-                $filesystem->copy(
-                    $file->getPathname(),
-                    app_path('Http/Controllers/Auth/' . Str::replaceLast('.stub', '.php', $file->getFilename()))
-                );
-            });
-    }
-
-    public function createResource()
-    {
-        if (!is_dir($directory = app_path('Http/Controllers/Resource'))) {
-            mkdir($directory, 0755, true);
-        }
-
-        $filesystem = new Filesystem;
-
-        collect($filesystem->allFiles(__DIR__ . '/../stubs/Auth'))
-            ->each(function (SplFileInfo $file) use ($filesystem) {
-                $filesystem->copy(
-                    $file->getPathname(),
-                    app_path('Http/Controllers/Auth/' . Str::replaceLast('.stub', '.php', $file->getFilename()))
-                );
-            });
-    }
 }
