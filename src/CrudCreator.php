@@ -11,12 +11,14 @@ class CrudCreator
 {
     use getStubs, helpersMethods, validateModel;
 
-    protected static function createApiCrud($name)
+    public static function createApiCrud($modelName)
     {
-        $modelNamespace = (new static)->getApiControllerDefaultNamespace($name);
+        $apiContollerNamespace = (new static)->getApiControllerDefaultNamespace();
+        $modelNamespace = (new static)->getModelNamespace($modelName);
+        // dd($apiContollerNamespace);
         $template = str_replace(
-            ['{{$modelName}}', '{{ $modelNamespace }}'],
-            [$name, $modelNamespace],
+            ['{{ $modelName }}', '{{ $apiControllerNamespace }}'],
+            [$name, $apiContollerNamespace],
             (new static)->getApiControllerStub($name)
         );
 

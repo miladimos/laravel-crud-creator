@@ -9,15 +9,17 @@ trait helpersMethods
 
     protected function getApiControllerDefaultNamespace()
     {
-        $apiControllerNamespace = config('crud-cretor.api.api_namespace') ?? 'Api';
+        $appNamespace = config('crud-creator.base_app_namespace') ?? 'App';
+        $apiControllerNamespace = config('crud-cretor.api.namespace') ?? 'Api';
         $apiVersion = config('crud-cretor.api.api_version') ?? 'v1';
-        return app_path($apiControllerNamespace);
+        return $appNamespace . '\\' . "Http\\Controllers" . '\\' . $apiControllerNamespace . "\\" .  $apiVersion . ';';
     }
 
-    protected function getControllerDefaultNamespace()
+    protected function getWebControllerDefaultNamespace()
     {
-        $repositoryNamespace = config('crud-creator.web.web_namespace') ?? 'Site';
-        return app_path($repositoryNamespace);
+        $appNamespace = config('crud-creator.base_app_namespace') ?? 'App';
+        $webControllerNamespace = config('crud-cretor.web.namespace') ?? 'Site';
+        return $appNamespace . '\\' . "Http\\Controllers" . '\\' . $webControllerNamespace . ';';
     }
 
     protected static function getModelNamespace($model)

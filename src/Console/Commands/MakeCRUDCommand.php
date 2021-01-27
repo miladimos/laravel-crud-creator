@@ -29,6 +29,8 @@ class MakeCRUDCommand extends Command
 
         $this->warn("CRUD Controller for Model: {$modelName} is creating ...");
 
+        CrudCreator::createApiCrud($modelName);
+
         die;
 
         try {
