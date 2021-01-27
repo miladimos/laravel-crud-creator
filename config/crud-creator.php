@@ -1,8 +1,6 @@
 <?php
 
 return [
-
-
     'api' => [
         'api_namespace' => 'Api',
 
