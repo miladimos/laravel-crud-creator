@@ -27,16 +27,4 @@ class CrudCreator
         file_put_contents(base_path("/App/Repositories/{$name}CrudCreator.php"), $template);
     }
 
-    public static function make($modelName)
-    {
-
-        if (!file_exists($path=(new static)->getCrudCreatorDefaultNamespace()))
-            mkdir($path, 0777, true);
-
-        // self::createProvider();
-        self::createCrudCreator($modelName);
-        self::createInterface($modelName);
-
-        return true;
-    }
 }

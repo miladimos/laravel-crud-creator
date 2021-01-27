@@ -10,23 +10,14 @@ use Illuminate\Http\Request;
 class {{ $modelName }}ApiController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
-     */
+
     public function index()
     {
         $models = new {{ $modelName }}Collection({{ $modelName }}::all());
         return $this->responseSuccess($models);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param {{ $modelName }}Request $request
-     * @return JsonResponse
-     */
+
     public function store({{ $modelName }}Request $request)
     {
         $validatedData = $request->validated();
@@ -34,12 +25,6 @@ class {{ $modelName }}ApiController extends Controller
         return $this->responseSuccess(new {{ $modelName }}Resource($model));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $model
-     * @return JsonResponse
-     */
     public function show({{ $modelName }} $model)
     {
 
@@ -47,13 +32,6 @@ class {{ $modelName }}ApiController extends Controller
         return $this->responseSuccess(new {{ $modelName }}Resource($model));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $model
-     * @return \Illuminate\Http\Response
-     */
     public function update({{ $modelName }}Request $request, {{ $modelName }} $model)
     {
         $validatedData = $request->validated();
@@ -61,12 +39,7 @@ class {{ $modelName }}ApiController extends Controller
         return $this->responseSuccess(new {{ $modelName }}Resource($model));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $model
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy({{ $modelName }} $model)
     {
         $data = [

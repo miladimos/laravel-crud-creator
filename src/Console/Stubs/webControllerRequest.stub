@@ -10,70 +10,34 @@ use Illuminate\Http\Request;
 class {{ $modelName }}ApiController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
-     */
     public function index()
     {
         $models = {{ $modelName }}::all();
         return view('', compact('models'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param {{ $modelName }}Request $request
-     * @return JsonResponse
-     */
     public function store({{ $modelName }}Request $request)
     {
         $validatedData = $request->validated();
         $model = {{ $modelName }}::create($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        return redirect()->route('')->with('status', 'message');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $model
-     * @return JsonResponse
-     */
     public function show({{ $modelName }} $model)
     {
-
-        // $model = new {{ $modelName }}Resource({{ $modelName }}::find($model));
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        return view('', compact('model'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $model
-     * @return \Illuminate\Http\Response
-     */
     public function update({{ $modelName }}Request $request, {{ $modelName }} $model)
     {
         $validatedData = $request->validated();
-        $model = {{ $modelName }}::findOrFail($model)->update($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        $model->update($validatedData);
+        return redirect()->route('')->with('status', 'message');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $model
-     * @return \Illuminate\Http\Response
-     */
     public function destroy({{ $modelName }} $model)
     {
-        $data = [
-            'data'         => new {{ $modelName }}Resource({{ $modelName }}::find($model)->delete()),
-            'status'       => 'Ok',
-            'status_code'  => '200'
-        ];
-        return response()->json($data);
+        $model->delete();
+        return redirect()->route()->with('status', 'message');
     }
 }
