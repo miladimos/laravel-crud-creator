@@ -18,15 +18,15 @@ class CrudCreator
         // dd($apiContollerNamespace);
         $template = str_replace(
             ['{{ $modelName }}', '{{ $apiControllerNamespace }}'],
-            [$name, $apiContollerNamespace],
-            (new static)->getApiControllerStub($name)
+            [$modelName, $apiContollerNamespace],
+            (new static)->getApiControllerStub($modelName)
         );
 
 
         if (!file_exists($path=base_path('/App/Providers/CrudCreatorServiceProvider.php')))
             file_put_contents(base_path('/App/Providers/CrudCreatorServiceProvider.php'), $template);
 
-        file_put_contents(base_path("/App/Repositories/{$name}CrudCreator.php"), $template);
+        file_put_contents(base_path("/App/Repositories/{$modelName}CrudCreator.php"), $template);
     }
 
 }

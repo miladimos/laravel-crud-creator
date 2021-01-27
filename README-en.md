@@ -10,9 +10,9 @@
 
 ### For Installation run below command: 
 
-``php artisan crud-creator:install``
+``php artisan crud:install``
 
 
-### For Create new crud-creator 
+### Create a new CRUD controller class
 
-``php artisan make:crud-creator {ModelName}``
+``php artisan make:crud {ModelName}``

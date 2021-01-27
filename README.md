@@ -10,9 +10,9 @@
 
 ### برای نصب فایل های پکیج از دستور زیر استفاده کنید 
 
-``php artisan crud-creator:install``
+``php artisan crud:install``
 
 
 ### برای ایجاد یک ریپازیتوری از دستور زیر استفاده کنید 
 
-``php artisan make:crud-creator {ModelName}``
+``php artisan make:crud {ModelName}``
