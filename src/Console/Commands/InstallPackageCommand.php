@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 class InstallPackageCommand extends Command
 {
 
-    protected $signature = "crud_creator:install";
+    protected $signature = "crud:install";
 
     protected $name = 'Install crud_creator Package';
 
@@ -23,11 +23,11 @@ class InstallPackageCommand extends Command
 
     public function handle()
     {
-        $this->warn("Repository Package installing started...");
+        $this->warn("laravel-crud-creator Package installing started...");
 
         //config
-        if (File::exists(config_path('crud_creator.php'))) {
-            $confirmConfig = $this->confirm("repository.php already exist. you must overwrite it! Are you ok?");
+        if (File::exists(config_path('crud-creator.php'))) {
+            $confirmConfig = $this->confirm("crud-creator.php already exist. you must overwrite it! Are you ok?");
             if ($confirmConfig) {
                 $this->publishConfig();
                 $this->info("config publish/overwrite finished");
@@ -42,12 +42,12 @@ class InstallPackageCommand extends Command
 
 
         $confirmStub = $this->confirm("Do you like publish stub files?");
-        if($confirmStub) {
+        if ($confirmStub) {
             $this->publishStubs();
             $this->info("stub files published!");
         }
 
-        $this->info("repository package installed successfully! please star me on github!");
+        $this->info("laravel-crud-creator package installed successfully! please star me on github! -> https://github.com/miladimos/laravel-crud-creator");
 
         return 0;
     }
@@ -56,16 +56,16 @@ class InstallPackageCommand extends Command
     private function publishConfig()
     {
         $this->call('vendor:publish', [
-            '--provider' => "Miladimos\Repository\Providers\RepositoryServiceProvider",
-            '--tag' => "repository-config"
+            '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
+            '--tag' => "crud-config"
         ]);
     }
 
     private function publishStubs()
     {
         $this->call('vendor:publish', [
-            '--provider' => "Miladimos\Repository\Providers\RepositoryServiceProvider",
-            '--tag' => "repository-stubs"
+            '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
+            '--tag' => "crud-stubs"
         ]);
     }
 }
