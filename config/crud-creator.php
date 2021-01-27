@@ -1,27 +1,30 @@
 <?php
 
 return [
-    'api' => [
-        'api_namespace' => 'Api',
-
-        'api_version' => 'v1',
-    ],
-
-    'web' => [
-        'web_namespace' => 'Site',
-    ],
 
     'base_app_namespace' => 'App',
 
     'models_namespace' => 'Models',
 
-    'resource_namespace' => 'Resource',
-
-    'resource_suffix' => 'Resource',
-
     'request_namespace' => 'Request',
 
     'request_suffix' => 'Request',
+
+    'api' => [
+        'namespace' => 'Api',
+
+        'version' => 'v1',
+
+        'resources' => [
+            'namespace' => 'Resource',
+
+            'suffix' => 'Resource',
+        ],
+    ],
+
+    'web' => [
+        'namespace' => 'Site',
+    ],
 
     'pagination' => [
         'per_page' => 8,
