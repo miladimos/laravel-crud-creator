@@ -3,7 +3,6 @@
 
 namespace Miladimos\CrudCreator;
 
-
 use Miladimos\CrudCreator\Traits\getStubs;
 use Miladimos\CrudCreator\Traits\validateModel;
 use Miladimos\CrudCreator\Traits\helpersMethods;

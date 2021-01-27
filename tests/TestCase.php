@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Miladimos\Repository\Tests;
+namespace Miladimos\CrudCreator\Tests;
 
 
-use Miladimos\Repository\Providers\RepositoryServiceProvider;
+use Miladimos\CrudCreator\Providers\CrudCreatorServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -16,7 +16,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            RepositoryServiceProvider::class,
+            CrudCreatorServiceProvider::class,
         ];
     }
 

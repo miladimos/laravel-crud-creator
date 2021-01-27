@@ -10,6 +10,7 @@ return [
     'web' => [
         'web_namespace' => 'Site',
     ],
+
     'base_app_namespace' => 'App',
 
     'models_namespace' => 'Models',

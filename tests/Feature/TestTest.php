@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Miladimos\Repository\Tests;
+namespace Miladimos\CrudCreator\Tests;
 
 
 class TestTest extends TestCase
