@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\v1\Webmaster\{{ $modelName }};
+namespace {{ $requestNamespace }};
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class {{ $modelName }}Request extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tags|min:3'
+            'name' => 'required'
         ];
     }
 }

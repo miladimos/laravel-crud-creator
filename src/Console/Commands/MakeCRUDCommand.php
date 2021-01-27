@@ -34,7 +34,9 @@ class MakeCRUDCommand extends Command
         $this->warn("CRUD Controller for Model: {$modelName} is creating ...");
 
         die;
+
         try {
+
             if (CrudCreator::make($modelName))
                 $this->info("CRUD Controller for Model: {$modelName} is created successfully.");
             else
