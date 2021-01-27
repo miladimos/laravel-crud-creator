@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ $webControllerNamespace }};
+namespace {{ $apiControllerNamespace }};
 
 use App\Controller\Controller;
 use {{ $modelNamespace }};
@@ -17,8 +17,8 @@ class {{ $modelName }}ApiController extends Controller
      */
     public function index()
     {
-        $models = {{ $modelName }}::all();
-        return view('', compact('models'));
+        $models = new {{ $modelName }}Collection({{ $modelName }}::all());
+        return $this->responseSuccess($models);
     }
 
     /**
