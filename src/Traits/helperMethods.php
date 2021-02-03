@@ -4,7 +4,7 @@ namespace Miladimos\CrudCreator\Traits;
 
 use Illuminate\Support\Str;
 
-trait helperMethods
+trait HelperMethods
 {
 
     protected function getApiControllerDefaultNamespace()

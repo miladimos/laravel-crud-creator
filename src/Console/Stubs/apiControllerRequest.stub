@@ -13,37 +13,31 @@ class {{ $modelName }}ApiController extends Controller
     public function index()
     {
         $models = new {{ $modelName }}Collection({{ $modelName }}::all());
-        return $this->responseSuccess($models);
+        return $this->response()->json($models);
     }
 
     public function store({{ $modelName }}Request $request)
     {
         $validatedData = $request->validated();
         $model = {{ $modelName }}::create($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        return $this->response()->json($model);
     }
 
     public function show({{ $modelName }} $model)
     {
-
-        // $model = new {{ $modelName }}Resource({{ $modelName }}::find($model));
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        return $this->response()->json($model);
     }
 
     public function update({{ $modelName }}Request $request, {{ $modelName }} $model)
     {
         $validatedData = $request->validated();
-        $model = {{ $modelName }}::findOrFail($model)->update($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        $model = $model->update($validatedData);
+        return $this->response()->json($model);
     }
 
     public function destroy({{ $modelName }} $model)
     {
-        $data = [
-            'data'         => new {{ $modelName }}Resource({{ $modelName }}::find($model)->delete()),
-            'status'       => 'Ok',
-            'status_code'  => '200'
-        ];
+        $model->delete()
         return response()->json($data);
     }
 }

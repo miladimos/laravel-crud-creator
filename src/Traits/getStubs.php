@@ -2,7 +2,7 @@
 
 namespace Miladimos\CrudCreator\Traits;
 
-trait getStubs
+trait GetStubs
 {
     private $vendor = 'vendor/miladimos/crud-creator';
 

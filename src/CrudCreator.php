@@ -9,7 +9,7 @@ use Miladimos\CrudCreator\Traits\helperMethods;
 
 class CrudCreator
 {
-    use getStubs, helperMethods, validateModel;
+    use GetStubs, HelperMethods, ValidateModel;
 
     public static function createApiCrud($modelName)
     {

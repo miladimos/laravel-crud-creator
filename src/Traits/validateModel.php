@@ -5,7 +5,7 @@ use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
 
-trait validateModel
+trait ValidateModel
 {
 
     protected function ensureControllerDoesntAlreadytExist($model) {
