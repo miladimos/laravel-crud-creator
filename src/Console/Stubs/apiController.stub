@@ -12,38 +12,30 @@ class {{ $modelName }}ApiController extends Controller
 
     public function index()
     {
-        $models = new {{ $modelName }}Collection({{ $modelName }}::all());
-        return $this->responseSuccess($models);
+        $models = {{ $modelName }}::all();
+        return response()->json($models);
     }
 
-    public function store({{ $modelName }}Request $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validated();
-        $model = {{ $modelName }}::create($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        $model = {{ $modelName }}::create($request->all());
+        return response()->json($model);
     }
 
     public function show({{ $modelName }} $model)
     {
-
-        // $model = new {{ $modelName }}Resource({{ $modelName }}::find($model));
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        return response()->json($model);
     }
 
-    public function update({{ $modelName }}Request $request, {{ $modelName }} $model)
+    public function update(Request $request, {{ $modelName }} $model)
     {
-        $validatedData = $request->validated();
-        $model = {{ $modelName }}::findOrFail($model)->update($validatedData);
-        return $this->responseSuccess(new {{ $modelName }}Resource($model));
+        $model->update($request->all());
+        return response()->json($model);
     }
 
     public function destroy({{ $modelName }} $model)
     {
-        $data = [
-            'data'         => new {{ $modelName }}Resource({{ $modelName }}::find($model)->delete()),
-            'status'       => 'Ok',
-            'status_code'  => '200'
-        ];
-        return response()->json($data);
+        $model->delete();
+        return response()->json("deleted");
     }
 }
