@@ -2,7 +2,6 @@
 
 namespace Miladimos\CrudCreator\Console\Commands;
 
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -17,7 +16,7 @@ class InstallPackageCommand extends Command
 
     public function handle()
     {
-        $this->warn("laravel-crud-creator Package installing started...");
+        $this->warn("laravel-crud-creator package installing started...");
 
         //config
         if (File::exists(config_path('crud-creator.php'))) {
@@ -34,11 +33,24 @@ class InstallPackageCommand extends Command
             $this->info("config published");
         }
 
-
-        $confirmStub = $this->confirm("Do you like publish stub files?");
+        $confirmStub = $this->confirm("You must publish/overwrite stubs files!");
         if ($confirmStub) {
+            if (File::isDirectory(resource_path('vendor/miladimos/repository/stubs'))) {
+                $confirmConfig = $this->confirm("stubs files already exist. you must overwrite it! Are you ok?");
+                if ($confirmConfig) {
+                    $this->publishStubs();
+                    $this->info("stubs publish/overwrite finished");
+                    die;
+                } else {
+                    $this->error("you must publish and overwrite stubs file");
+                    die;
+                }
+            }
             $this->publishStubs();
             $this->info("stub files published!");
+        } else {
+            $this->error("you must publish and overwrite stubs file");
+            die;
         }
 
         $this->info("laravel-crud-creator package installed successfully! please star me on github! -> https://github.com/miladimos/laravel-crud-creator");
@@ -50,7 +62,8 @@ class InstallPackageCommand extends Command
     {
         $this->call('vendor:publish', [
             '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
-            '--tag' => "crud-config"
+            '--tag'      => "crud-config",
+            '--force'    => true
         ]);
     }
 
@@ -58,7 +71,8 @@ class InstallPackageCommand extends Command
     {
         $this->call('vendor:publish', [
             '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
-            '--tag' => "crud-stubs"
+            '--tag'      => "crud-stubs",
+            '--force'    => true
         ]);
     }
 }

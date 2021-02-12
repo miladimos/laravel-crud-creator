@@ -1,15 +1,16 @@
 <?php
 
-
 namespace Miladimos\CrudCreator;
 
-use Miladimos\CrudCreator\Traits\getStubs;
-use Miladimos\CrudCreator\Traits\validateModel;
-use Miladimos\CrudCreator\Traits\helperMethods;
+use Miladimos\CrudCreator\Traits\GetStubs;
+use Miladimos\CrudCreator\Traits\ValidateModel;
+use Miladimos\CrudCreator\Traits\HelperMethods;
 
 class CrudCreator
 {
-    use GetStubs, HelperMethods, ValidateModel;
+    use GetStubs,
+        HelperMethods,
+        ValidateModel;
 
     public static function createApiCrud($modelName)
     {

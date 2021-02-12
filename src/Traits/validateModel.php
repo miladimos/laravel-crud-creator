@@ -1,37 +1,42 @@
-<?php namespace Miladimos\CrudCreator\Traits;
+<?php
 
+namespace Miladimos\CrudCreator\Traits;
+
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
-
 trait ValidateModel
 {
 
-    protected function ensureControllerDoesntAlreadytExist($model) {
+    protected function ensureControllerDoesntAlreadytExist($model)
+    {
         if (class_exists($classFullyQualified = $this->getControllerNamespace($model), false)) {
-          throw new InvalidArgumentException("{$classFullyQualified} already exists.");
+            throw new InvalidArgumentException("{$classFullyQualified} already exists.");
         }
     }
 
-    protected function ensureApiControllerDoesntAlreadytExist($model) {
+    protected function ensureApiControllerDoesntAlreadytExist($model)
+    {
         if (class_exists($classFullyQualified = $this->getApiControllerDefaultNamespace($model), false)) {
-          throw new InvalidArgumentException("{$classFullyQualified} already exists.");
+            throw new InvalidArgumentException("{$classFullyQualified} already exists.");
         }
     }
 
-    protected function ensureApiResourceDoesntAlreadytExist($model) {
+    protected function ensureApiResourceDoesntAlreadytExist($model)
+    {
         if (class_exists($classFullyQualified = $this->getApiResourceDefaultNamespace($model), false)) {
-          throw new InvalidArgumentException("{$classFullyQualified} already exists.");
+            throw new InvalidArgumentException("{$classFullyQualified} already exists.");
         }
     }
 
-    protected function ensureRequestDoesntAlreadytExist($model) {
+    protected function ensureRequestDoesntAlreadytExist($model)
+    {
         if (class_exists($classFullyQualified = $this->getRequestDefaultNamespace($model), false)) {
-          throw new InvalidArgumentException("{$classFullyQualified} already exists.");
+            throw new InvalidArgumentException("{$classFullyQualified} already exists.");
         }
     }
-
 
     public function createRequest()
     {
@@ -66,5 +71,4 @@ trait ValidateModel
                 );
             });
     }
-
 }
