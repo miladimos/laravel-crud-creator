@@ -40,7 +40,6 @@ class CrudCreator
             (new static)->getWebControllerStub($modelName)
         );
 
-
         if (!file_exists($path = base_path('/App/Providers/CrudCreatorServiceProvider.php')))
             file_put_contents(base_path('/App/Providers/CrudCreatorServiceProvider.php'), $template);
 
@@ -49,6 +48,6 @@ class CrudCreator
 
     public static function make()
     {
-        dd((new static)->stubPath());
+        // dd((new static)->stubPath());
     }
 }

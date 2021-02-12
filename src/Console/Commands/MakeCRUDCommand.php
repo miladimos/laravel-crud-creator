@@ -2,6 +2,7 @@
 
 namespace Miladimos\CrudCreator\Console\Commands;
 
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -18,6 +19,7 @@ class MakeCRUDCommand extends Command
                            {--a|api : Create a new CRUD Api Controller}
                            {--w|web : Create a new CRUD Web Controller}
                            {--r|resource : Create a new Resource file for Api Controllers}
+                           {--rq|request : Create a new Request file for Controllers}
                            ";
 
     protected $name = 'crud-creator';
@@ -33,23 +35,47 @@ class MakeCRUDCommand extends Command
 
         $this->warn("CRUD Controller for Model: {$this->modelName} is creating ...");
 
-
-        CrudCreator::make($this->modelName);
-
-        die;
-
-        try {
-
-            if (CrudCreator::make($this->modelName))
-                $this->info("CRUD Controller for Model: {$this->modelName} is created successfully.");
-            else
-                $this->error('Error in Creating CRUD Controller for!');
-            die;
-        } catch (\Exception $exception) {
-            $this->error($exception);
-            die;
+        if($this->option('web')) {
+            $this->createWebCrud($this->modelName);
         }
+
+        if($this->option('api')) {
+            $this->createApiCrud($this->modelName);
+        }
+
 
         return 0;
     }
+
+
+    protected function createWebCrud($model)
+    {
+        try {
+
+            if (CrudCreator::createWebCrud($model))
+                $this->info("CRUD Controller for Model: {$model} is created successfully.");
+            else
+                $this->error('Error in Creating CRUD Controller for!');
+            die;
+        } catch (Exception $exception) {
+            $this->error($exception->getMessage());
+            die;
+        }
+    }
+
+    protected function createApiCrud($model)
+    {
+        try {
+
+            if (CrudCreator::createApiCrud($model))
+                $this->info("CRUD Controller for Model: {$model} is created successfully.");
+            else
+                $this->error('Error in Creating CRUD Controller for!');
+            die;
+        } catch (Exception $exception) {
+            $this->error($exception->getMessage());
+            die;
+        }
+    }
+
 }
