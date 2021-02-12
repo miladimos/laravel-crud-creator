@@ -6,9 +6,11 @@ return [
 
     'models_namespace' => 'Models',
 
-    'request_namespace' => 'Request',
+    'request' => [
+        'namespace' => 'Request',
 
-    'request_suffix' => 'Request',
+        'suffix' => 'Request',
+    ],
 
     'api' => [
         'namespace' => 'Api',
