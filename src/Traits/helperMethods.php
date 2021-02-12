@@ -54,6 +54,6 @@ trait HelperMethods
 
     protected static function getModelClassName($model)
     {
-        return Str::studly($model);
+        return Str::studly(trim($model));
     }
 }

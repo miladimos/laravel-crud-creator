@@ -4,55 +4,57 @@ namespace Miladimos\CrudCreator\Traits;
 
 trait GetStubs
 {
-    private $vendor = 'vendor/miladimos/crud-creator';
+    private $ds = DIRECTORY_SEPARATOR;
+
+    private $vendor = "vendor\miladimos\crud-creator";
 
     protected function getApiControllerStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/apiController.stub"));
+        return file_get_contents($this->stubPath() . "apiController.stub");
     }
 
     protected function getApiRequestControllerStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/apiControllerRequest.stub"));
+        return file_get_contents($this->stubPath() . "apiControllerRequest.stub");
     }
 
     protected function getApiResourceControllerStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/apiControllerResource.stub"));
+        return file_get_contents($this->stubPath() . "apiControllerResource.stub");
     }
 
     protected function getWebControllerStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/webController.stub"));
+        return file_get_contents($this->stubPath() . "webController.stub");
     }
 
     protected function getWebControllerRequestStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/webController.stub"));
+        return file_get_contents($this->stubPath() . "webController.stub");
     }
 
     protected function getResourceStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/resource.stub"));
+        return file_get_contents($this->stubPath() . "resource.stub");
     }
 
     protected function getResourceCollectionStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/resourceCollection.stub"));
+        return file_get_contents($this->stubPath() . "resourceCollection.stub");
     }
 
     protected function getRequestStub()
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/request.stub"));
+        return file_get_contents($this->stubPath() . "request.stub");
     }
 
     protected function getStub($type)
     {
-        return file_get_contents(resource_path("{$this->vendor}/stubs/$type.stub"));
+        return file_get_contents($this->stubPath() . "$type.stub");
     }
 
     public function stubPath()
     {
-        return __DIR__ . '/stubs';
+        return resource_path("{$this->vendor}\stubs\\");
     }
 }

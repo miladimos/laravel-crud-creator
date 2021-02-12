@@ -46,4 +46,9 @@ class CrudCreator
 
         file_put_contents(base_path("/App/Repositories/{$modelName}CrudCreator.php"), $template);
     }
+
+    public static function make()
+    {
+        dd((new static)->stubPath());
+    }
 }

@@ -2,15 +2,16 @@
 
 namespace Miladimos\CrudCreator\Console\Commands;
 
-
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Miladimos\CrudCreator\CrudCreator;
 use Symfony\Component\Finder\SplFileInfo;
+use Miladimos\CrudCreator\Traits\HelperMethods;
 
 class MakeCRUDCommand extends Command
 {
+    use HelperMethods;
 
     protected $signature = "make:crud
                            { model : Model Name }
@@ -19,24 +20,28 @@ class MakeCRUDCommand extends Command
                            {--r|resource : Create a new Resource file for Api Controllers}
                            ";
 
-    protected $name = 'CrudCreator';
+    protected $name = 'crud-creator';
 
     protected $description = 'Create a new CRUD controller class';
 
+    protected $modelName;
+
+
     public function handle()
     {
-        $modelName = trim(Str::studly($this->argument('model')));
+        $this->modelName = $this->getModelClassName($this->argument('model'));
 
-        $this->warn("CRUD Controller for Model: {$modelName} is creating ...");
+        $this->warn("CRUD Controller for Model: {$this->modelName} is creating ...");
 
-        CrudCreator::createApiCrud($modelName);
+
+        CrudCreator::make($this->modelName);
 
         die;
 
         try {
 
-            if (CrudCreator::make($modelName))
-                $this->info("CRUD Controller for Model: {$modelName} is created successfully.");
+            if (CrudCreator::make($this->modelName))
+                $this->info("CRUD Controller for Model: {$this->modelName} is created successfully.");
             else
                 $this->error('Error in Creating CRUD Controller for!');
             die;
@@ -47,5 +52,4 @@ class MakeCRUDCommand extends Command
 
         return 0;
     }
-
 }

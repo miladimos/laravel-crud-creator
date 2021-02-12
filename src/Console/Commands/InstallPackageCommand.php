@@ -62,7 +62,7 @@ class InstallPackageCommand extends Command
     {
         $this->call('vendor:publish', [
             '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
-            '--tag'      => "crud-config",
+            '--tag'      => "crud-creator-config",
             '--force'    => true
         ]);
     }
@@ -71,7 +71,7 @@ class InstallPackageCommand extends Command
     {
         $this->call('vendor:publish', [
             '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
-            '--tag'      => "crud-stubs",
+            '--tag'      => "crud-creator-stubs",
             '--force'    => true
         ]);
     }
