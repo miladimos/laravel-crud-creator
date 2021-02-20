@@ -40,7 +40,7 @@ trait helperMethods
         $appNamespace = config('crud-creator.base_app_namespace') ?? 'App';
         $modelNamespace = config('crud-creator.models_namespace') ?? 'Models';
 
-        return $appNamespace . '\\' . $modelNamespace . '\\' . $model . ';';
+        return $appNamespace . '\\' . $modelNamespace . '\\' . $model;
     }
 
     protected static function getResourceNamespace($model)

@@ -49,6 +49,9 @@ class CrudCreator
 
         if (!file_exists($webControllerPath))
             file_put_contents($webControllerPath, $template);
+
+
+        return true;
     }
 
     public static function make()
