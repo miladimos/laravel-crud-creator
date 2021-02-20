@@ -2,7 +2,7 @@
 
 namespace Miladimos\CrudCreator\Traits;
 
-trait GetStubs
+trait getStubs
 {
     private $ds = DIRECTORY_SEPARATOR;
 

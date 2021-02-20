@@ -7,7 +7,7 @@ use InvalidArgumentException;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
-trait ValidateModel
+trait validateModel
 {
 
     protected function ensureControllerDoesntAlreadytExist($model)

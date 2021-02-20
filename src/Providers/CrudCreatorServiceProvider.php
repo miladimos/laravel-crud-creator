@@ -50,7 +50,7 @@ class CrudCreatorServiceProvider extends ServiceProvider
         ], 'crud-creator-config');
 
         $this->publishes([
-            __DIR__ . '/../Console/Stubs' => resource_path('vendor/miladimos/crud-creator/stubs'),
+            __DIR__ . '/../Console/Stubs' => resource_path('vendor/miladimos/laravel-crud-creator/stubs'),
         ], 'crud-creator-stubs');
     }
 
@@ -62,11 +62,6 @@ class CrudCreatorServiceProvider extends ServiceProvider
         ]);
     }
 
-    /**
-     * Check if package is running under Lumen app
-     *
-     * @return bool
-     */
     protected function isLumen()
     {
         return str_contains($this->app->version(), 'Lumen') === true;

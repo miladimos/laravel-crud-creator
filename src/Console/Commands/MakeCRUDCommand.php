@@ -3,11 +3,8 @@
 namespace Miladimos\CrudCreator\Console\Commands;
 
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
 use Miladimos\CrudCreator\CrudCreator;
-use Symfony\Component\Finder\SplFileInfo;
 use Miladimos\CrudCreator\Traits\HelperMethods;
 
 class MakeCRUDCommand extends Command
@@ -28,7 +25,6 @@ class MakeCRUDCommand extends Command
 
     protected $modelName;
 
-
     public function handle()
     {
         $this->modelName = $this->getModelClassName($this->argument('model'));
@@ -46,7 +42,6 @@ class MakeCRUDCommand extends Command
 
         return 0;
     }
-
 
     protected function createWebCrud($model)
     {

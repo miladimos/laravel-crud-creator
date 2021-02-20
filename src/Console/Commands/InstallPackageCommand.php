@@ -33,9 +33,10 @@ class InstallPackageCommand extends Command
             $this->info("config published");
         }
 
+        // stub files
         $confirmStub = $this->confirm("You must publish/overwrite stubs files!");
         if ($confirmStub) {
-            if (File::isDirectory(resource_path('vendor/miladimos/repository/stubs'))) {
+            if (File::isDirectory(resource_path('vendor/miladimos/laravel-crud-creator/stubs'))) {
                 $confirmConfig = $this->confirm("stubs files already exist. you must overwrite it! Are you ok?");
                 if ($confirmConfig) {
                     $this->publishStubs();
@@ -61,7 +62,7 @@ class InstallPackageCommand extends Command
     private function publishConfig()
     {
         $this->call('vendor:publish', [
-            '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
+            '--provider' => "Miladimos\CrudCreator\Providers\CrudCreatorServiceProvider",
             '--tag'      => "crud-creator-config",
             '--force'    => true
         ]);
@@ -70,7 +71,7 @@ class InstallPackageCommand extends Command
     private function publishStubs()
     {
         $this->call('vendor:publish', [
-            '--provider' => "Miladimos\CrudCrator\Providers\CrudCratorServiceProvider",
+            '--provider' => "Miladimos\CrudCreator\Providers\CrudCreatorServiceProvider",
             '--tag'      => "crud-creator-stubs",
             '--force'    => true
         ]);
