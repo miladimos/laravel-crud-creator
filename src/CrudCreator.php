@@ -2,6 +2,7 @@
 
 namespace Miladimos\CrudCreator;
 
+use Illuminate\Support\Facades\File;
 use Miladimos\CrudCreator\Traits\getStubs;
 use Miladimos\CrudCreator\Traits\validateModel;
 use Miladimos\CrudCreator\Traits\helperMethods;
@@ -32,18 +33,22 @@ class CrudCreator
 
     public static function createWebCrud($modelName)
     {
-        $webContollerNamespace = (new static)->getWebControllerDefaultNamespace();
+        $webControllerPath = (new static)->getWebControllerPath($modelName);
+        $webControllerNamespace = (new static)->getWebControllerDefaultNamespace() . '\\' . $modelName;
         $modelNamespace = (new static)->getModelNamespace($modelName);
+        $getWebControllerDirPath = (new static)->getWebControllerDirPath($modelName);
+
         $template = str_replace(
             ['{{ $modelName }}', '{{ $modelNamespace }}', '{{ $webControllerNamespace }}'],
-            [$modelName, $modelNamespace, $webContollerNamespace],
+            [$modelName, $modelNamespace, $webControllerNamespace],
             (new static)->getWebControllerStub($modelName)
         );
 
-        if (!file_exists($path = base_path('/App/Providers/CrudCreatorServiceProvider.php')))
-            file_put_contents(base_path('/App/Providers/CrudCreatorServiceProvider.php'), $template);
+        if (!File::isDirectory($path = $getWebControllerDirPath))
+            mkdir($path, 0777, true);
 
-        file_put_contents(base_path("/App/Repositories/{$modelName}CrudCreator.php"), $template);
+        if (!file_exists($webControllerPath))
+            file_put_contents($webControllerPath, $template);
     }
 
     public static function make()

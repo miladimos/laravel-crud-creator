@@ -19,7 +19,20 @@ trait helperMethods
     {
         $appNamespace = config('crud-creator.base_app_namespace') ?? 'App';
         $webControllerNamespace = config('crud-cretor.web.namespace') ?? 'Site';
-        return $appNamespace . '\\' . "Http\\Controllers" . '\\' . $webControllerNamespace . ';';
+        return $appNamespace . '\\' . "Http\\Controllers" . '\\' . $webControllerNamespace;
+    }
+
+    protected function getWebControllerPath($model)
+    {
+        $webControllerNamespace = config('crud-cretor.web.namespace') ?? 'Site';
+        // $controllerSuffix = config() ?? 'Controller';
+        return app_path("Http\\Controllers" . '\\' . $webControllerNamespace .'\\' .$model .'\\' . $model . 'Controller' . '.php');
+    }
+
+    protected function getWebControllerDirPath($model)
+    {
+        $webControllerNamespace = config('crud-cretor.web.namespace') ?? 'Site';
+        return app_path("Http\\Controllers" . '\\' . $webControllerNamespace .'\\' .$model);
     }
 
     protected static function getModelNamespace($model)

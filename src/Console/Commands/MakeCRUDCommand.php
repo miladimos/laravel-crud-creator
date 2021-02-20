@@ -39,16 +39,33 @@ class MakeCRUDCommand extends Command
             $this->createApiCrud($this->modelName);
         }
 
-
         return 0;
     }
 
     protected function createWebCrud($model)
     {
+
+        // if ((new self)->ensureRepositoryDoesntAlreadytExist($this->modelName)) {
+        //     $msg = (new self)->getRepositoryFilePath($this->modelName) . " already exist. you must overwrite it! Are you ok?";
+
+        //     $confirm = $this->confirm($msg);
+        //     if ($confirm) {
+        //         if (CrudCreator::makeRepository($this->modelName)) {
+        //             $this->info("$this->modelName.php overwrite finished");
+        //             die;
+        //         } else {
+        //             $this->error('Error in overwriting Repository!');
+        //             die;
+        //         }
+        //     } else {
+        //         $this->modelName = $this->ask("Enter the Repository file name? ");
+        //     }
+        // }
+
         try {
 
             if (CrudCreator::createWebCrud($model))
-                $this->info("CRUD Controller for Model: {$model} is created successfully.");
+                $this->info("CRUD Web Controller for Model: {$model} is created successfully.");
             else
                 $this->error('Error in Creating CRUD Controller for!');
             die;
@@ -63,7 +80,7 @@ class MakeCRUDCommand extends Command
         try {
 
             if (CrudCreator::createApiCrud($model))
-                $this->info("CRUD Controller for Model: {$model} is created successfully.");
+                $this->info("CRUD Api Controller for Model: {$model} is created successfully.");
             else
                 $this->error('Error in Creating CRUD Controller for!');
             die;

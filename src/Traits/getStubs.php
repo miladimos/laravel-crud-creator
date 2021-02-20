@@ -6,7 +6,7 @@ trait getStubs
 {
     private $ds = DIRECTORY_SEPARATOR;
 
-    private $vendor = "vendor\miladimos\crud-creator";
+    private $vendor = "vendor\miladimos\laravel-crud-creator";
 
     protected function getApiControllerStub()
     {

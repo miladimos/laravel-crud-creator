@@ -2,7 +2,7 @@
 
 namespace {{ $webControllerNamespace }};
 
-use App\Controller\Controller;
+use App\Http\Controllers\Controller;
 use {{ $modelNamespace }};
 use Illuminate\Http\Request;
 
